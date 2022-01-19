@@ -14,6 +14,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Build with Gradle
         run: ./gradlew --no-daemon assembleDebug -Dorg.gradle.jvmargs=-Xmx2048m
       - name: Archive assembled APK
@@ -34,7 +38,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.1.0
         with:
-          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+          cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run UnitTest
         run: ./gradlew --no-daemon testDebugUnitTest -Dorg.gradle.jvmargs=-Xmx2048m
 
@@ -49,6 +53,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run Android Lint
         run: ./gradlew --no-daemon lintDebug -Dorg.gradle.jvmargs=-Xmx2048m
 
