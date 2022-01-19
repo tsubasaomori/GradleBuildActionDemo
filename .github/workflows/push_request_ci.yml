@@ -18,7 +18,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Peek Cache
-        run: ls -a ~/
+        run: ls -a /home/runner
 
   buildDevelopApk:
     runs-on: ubuntu-latest
